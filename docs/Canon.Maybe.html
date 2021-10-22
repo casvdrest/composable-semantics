@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Canon.Maybe</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Canon.Maybe.html" class="Module">Canon.Maybe</a> <a id="56" class="Keyword">where</a>
+
+<a id="63" class="Keyword">open</a> <a id="68" class="Keyword">import</a> <a id="75" href="Data.Product.html" class="Module">Data.Product</a>
+<a id="88" class="Keyword">open</a> <a id="93" class="Keyword">import</a> <a id="100" href="Data.Vec.html" class="Module">Data.Vec</a>
+<a id="109" class="Keyword">open</a> <a id="114" class="Keyword">import</a> <a id="121" href="Data.Maybe.html" class="Module">Data.Maybe</a> <a id="132" class="Keyword">using</a> <a id="138" class="Symbol">(</a><a id="139" href="Data.Maybe.Base.html#838" class="Datatype">Maybe</a><a id="144" class="Symbol">)</a>
+
+<a id="147" class="Keyword">open</a> <a id="152" class="Keyword">import</a> <a id="159" href="Core.html" class="Module">Core</a>
+<a id="164" class="Keyword">open</a> <a id="169" class="Keyword">import</a> <a id="176" href="Signature.html" class="Module">Signature</a>
+<a id="186" class="Keyword">open</a> <a id="191" class="Keyword">import</a> <a id="198" href="Canon.html" class="Module">Canon</a>
+
+<a id="205" class="Keyword">open</a> <a id="210" class="Keyword">import</a> <a id="217" href="Level.html" class="Module">Level</a> <a id="223" class="Symbol">as</a> <a id="226" class="Module">L</a>
+
+<a id="229" class="Keyword">module</a> <a id="MaybeCanon"></a><a id="236" href="Canon.Maybe.html#236" class="Module">MaybeCanon</a> <a id="247" class="Keyword">where</a>
+
+  <a id="256" class="Keyword">data</a> <a id="MaybeCanon.TMaybeShape"></a><a id="261" href="Canon.Maybe.html#261" class="Datatype">TMaybeShape</a> <a id="273" class="Symbol">:</a> <a id="275" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="279" class="Keyword">where</a> <a id="MaybeCanon.TMaybeShape.maybe"></a><a id="285" href="Canon.Maybe.html#285" class="InductiveConstructor">maybe</a> <a id="291" class="Symbol">:</a> <a id="293" href="Canon.Maybe.html#261" class="Datatype">TMaybeShape</a>
+  <a id="MaybeCanon.TMaybeΣ"></a><a id="307" href="Canon.Maybe.html#307" class="Function">TMaybeΣ</a> <a id="315" class="Symbol">=</a> <a id="317" href="Canon.Maybe.html#261" class="Datatype">TMaybeShape</a> <a id="329" href="Signature.html#791" class="InductiveConstructor Operator">▹</a> <a id="331" class="Symbol">λ</a> <a id="333" class="Keyword">where</a> <a id="339" href="Canon.Maybe.html#339" class="Bound">pair</a> <a id="344" class="Symbol">→</a> <a id="346" class="Number">1</a> 
+
+  <a id="MaybeCanon.maybe′"></a><a id="352" href="Canon.Maybe.html#352" class="Function">maybe′</a> <a id="359" class="Symbol">:</a> <a id="361" class="Symbol">⦃</a> <a id="363" href="Canon.Maybe.html#307" class="Function">TMaybeΣ</a> <a id="371" href="Signature.html#4467" class="Record Operator">≼</a> <a id="373" href="Signature.html#861" class="Generalizable">σ</a> <a id="375" class="Symbol">⦄</a> <a id="377" class="Symbol">→</a> <a id="379" class="Symbol">(</a><a id="380" href="Canon.Maybe.html#380" class="Bound">t</a> <a id="382" class="Symbol">:</a> <a id="384" href="Signature.html#1143" class="Datatype">μ</a> <a id="386" href="Signature.html#861" class="Generalizable">σ</a><a id="387" class="Symbol">)</a> <a id="389" class="Symbol">→</a> <a id="391" href="Signature.html#1143" class="Datatype">μ</a> <a id="393" href="Signature.html#861" class="Generalizable">σ</a>
+  <a id="397" href="Canon.Maybe.html#352" class="Function">maybe′</a> <a id="404" href="Canon.Maybe.html#404" class="Bound">t</a> <a id="406" class="Symbol">=</a> <a id="408" href="Signature.html#6246" class="Function">inject</a> <a id="415" class="Symbol">(</a><a id="416" href="Canon.Maybe.html#285" class="InductiveConstructor">maybe</a> <a id="422" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="424" class="Symbol">(</a><a id="425" href="Level.html#457" class="InductiveConstructor">lift</a> <a id="430" class="Symbol">(</a><a id="431" href="Canon.Maybe.html#404" class="Bound">t</a> <a id="433" href="Data.Vec.Base.html#1014" class="InductiveConstructor Operator">∷</a> <a id="435" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="437" class="Symbol">)))</a> 
+  
+  <a id="447" class="Keyword">open</a> <a id="452" href="Signature.html#1597" class="Module">Algebra</a>
+
+  <a id="MaybeCanon.MaybeVal"></a><a id="463" href="Canon.Maybe.html#463" class="Function">MaybeVal</a> <a id="472" class="Symbol">:</a> <a id="474" href="Signature.html#1597" class="Record">Algebra</a> <a id="482" href="Canon.Maybe.html#307" class="Function">TMaybeΣ</a> <a id="490" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="494" href="Agda.Primitive.html#326" class="Primitive">Set</a>
+  <a id="500" href="Signature.html#1685" class="Field">alg</a> <a id="504" href="Canon.Maybe.html#463" class="Function">MaybeVal</a> <a id="513" class="Symbol">(</a><a id="514" href="Canon.Maybe.html#285" class="InductiveConstructor">maybe</a> <a id="520" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="522" href="Level.html#457" class="InductiveConstructor">lift</a> <a id="527" class="Symbol">(</a><a id="528" href="Canon.Maybe.html#528" class="Bound">Vt</a> <a id="531" href="Data.Vec.Base.html#1014" class="InductiveConstructor Operator">∷</a> <a id="533" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="535" class="Symbol">))</a> <a id="538" class="Symbol">=</a> <a id="540" href="Data.Maybe.Base.html#838" class="Datatype">Maybe</a> <a id="546" href="Canon.Maybe.html#528" class="Bound">Vt</a>
+  
+  <a id="MaybeCanon.maybeCanon"></a><a id="554" href="Canon.Maybe.html#554" class="Function">maybeCanon</a> <a id="565" class="Symbol">:</a> <a id="567" href="Canon.html#690" class="Record">Canon</a>
+  <a id="575" href="Canon.html#741" class="Field">Canon.ty</a> <a id="584" href="Canon.Maybe.html#554" class="Function">maybeCanon</a> <a id="595" class="Symbol">=</a> <a id="597" href="Canon.Maybe.html#307" class="Function">TMaybeΣ</a>
+  <a id="607" href="Canon.html#768" class="Field">Canon.val</a> <a id="617" href="Canon.Maybe.html#554" class="Function">maybeCanon</a> <a id="628" class="Symbol">=</a> <a id="630" href="Canon.Maybe.html#463" class="Function">MaybeVal</a>
+
+<a id="640" class="Keyword">open</a> <a id="645" href="Canon.Maybe.html#236" class="Module">MaybeCanon</a> <a id="656" class="Keyword">public</a> 
+</pre></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Relation.Ternary.Structures.Syntax</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+<a id="36" class="Keyword">module</a> <a id="43" href="Relation.Ternary.Structures.Syntax.html" class="Module">Relation.Ternary.Structures.Syntax</a> <a id="78" class="Keyword">where</a>
+
+<a id="85" class="Keyword">open</a> <a id="90" class="Keyword">import</a> <a id="97" href="Relation.Binary.Structures.html" class="Module">Relation.Binary.Structures</a>
+<a id="124" class="Keyword">open</a> <a id="129" class="Keyword">import</a> <a id="136" href="Relation.Ternary.Core.html" class="Module">Relation.Ternary.Core</a>
+<a id="158" class="Keyword">open</a> <a id="163" class="Keyword">import</a> <a id="170" href="Relation.Ternary.Structures.html" class="Module">Relation.Ternary.Structures</a>
+
+<a id="199" class="Keyword">open</a> <a id="204" href="Relation.Binary.Structures.html#1522" class="Module">IsEquivalence</a>      <a id="223" class="Symbol">{{...}}</a> <a id="231" class="Keyword">using</a> <a id="237" class="Symbol">()</a> <a id="240" class="Keyword">renaming</a>
+  <a id="251" class="Symbol">(</a> <a id="253" href="Relation.Binary.Structures.html#1568" class="Field">refl</a> <a id="258" class="Symbol">to</a> <a id="refl"></a><a id="261" href="Relation.Ternary.Structures.Syntax.html#261" class="Field">≈-refl</a>
+  <a id="270" class="Symbol">;</a> <a id="272" href="Relation.Binary.Structures.html#1594" class="Field">sym</a> <a id="276" class="Symbol">to</a> <a id="sym"></a><a id="279" href="Relation.Ternary.Structures.Syntax.html#279" class="Field">≈-sym</a>
+  <a id="287" class="Symbol">;</a> <a id="289" href="Relation.Binary.Structures.html#1620" class="Field">trans</a> <a id="295" class="Symbol">to</a> <a id="trans"></a><a id="298" href="Relation.Ternary.Structures.Syntax.html#298" class="Field">≈-trans</a>
+  <a id="308" class="Symbol">;</a> <a id="310" href="Relation.Binary.Structures.html#1646" class="Function">reflexive</a> <a id="320" class="Symbol">to</a> <a id="reflexive"></a><a id="323" href="Relation.Ternary.Structures.Syntax.html#323" class="Function">≈-reflexive</a><a id="334" class="Symbol">)</a> <a id="336" class="Keyword">public</a>
+
+<a id="344" class="Keyword">open</a> <a id="349" href="Relation.Ternary.Core.html#920" class="Module">Rel₃</a>               <a id="368" class="Symbol">{{...}}</a> <a id="376" class="Keyword">public</a>
+<a id="383" class="Keyword">open</a> <a id="388" href="Relation.Ternary.Structures.PartialMonoid.html#606" class="Module">Emptiness</a>          <a id="407" class="Symbol">{{...}}</a> <a id="415" class="Keyword">public</a>
+<a id="422" class="Keyword">open</a> <a id="427" href="Relation.Ternary.Structures.PartialSemigroup.html#346" class="Module">IsPartialSemigroup</a> <a id="446" class="Symbol">{{...}}</a> <a id="454" class="Keyword">public</a>
+<a id="461" class="Keyword">open</a> <a id="466" href="Relation.Ternary.Structures.PartialMonoid.html#865" class="Module">IsPartialMonoid</a>    <a id="485" class="Symbol">{{...}}</a> <a id="493" class="Keyword">public</a>
+<a id="500" class="Keyword">open</a> <a id="505" href="Relation.Ternary.Structures.Positive.html#737" class="Module">IsPositive</a>         <a id="524" class="Symbol">{{...}}</a> <a id="532" class="Keyword">public</a>
+<a id="539" class="Keyword">open</a> <a id="544" href="Relation.Ternary.Structures.Positive.html#1106" class="Module">IsPositiveWithZero</a> <a id="563" class="Symbol">{{...}}</a> <a id="571" class="Keyword">public</a>
+<a id="578" class="Keyword">open</a> <a id="583" href="Relation.Ternary.Structures.Commutative.html#448" class="Module">IsCommutative</a>      <a id="602" class="Symbol">{{...}}</a> <a id="610" class="Keyword">public</a>
+<a id="617" class="Keyword">open</a> <a id="622" href="Relation.Ternary.Structures.Crosssplit.html#1242" class="Module">IsCrosssplittable</a>  <a id="641" class="Symbol">{{...}}</a> <a id="649" class="Keyword">public</a>
+<a id="656" class="Keyword">open</a> <a id="661" href="Relation.Ternary.Structures.Contractive.html#379" class="Module">IsContractive</a>      <a id="680" class="Symbol">{{...}}</a> <a id="688" class="Keyword">public</a>
+<a id="695" class="Keyword">open</a> <a id="700" href="Relation.Ternary.Structures.PartialJoinoid.html#756" class="Module">IsJoinoid</a>          <a id="719" class="Symbol">{{...}}</a> <a id="727" class="Keyword">public</a>
+<a id="734" class="Keyword">open</a> <a id="739" href="Relation.Ternary.Structures.Total.html#803" class="Module">IsTotal</a>            <a id="758" class="Symbol">{{...}}</a> <a id="766" class="Keyword">public</a>
+
+<a id="774" class="Keyword">open</a> <a id="779" href="Relation.Ternary.Structures.Commutative.html#788" class="Module">CommutativeSemigroupOps</a> <a id="803" class="Keyword">public</a>
+</pre></body></html>

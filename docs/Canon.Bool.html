@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Canon.Bool</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Canon.Bool.html" class="Module">Canon.Bool</a> <a id="55" class="Keyword">where</a>
+
+<a id="62" class="Keyword">open</a> <a id="67" class="Keyword">import</a> <a id="74" href="Data.Product.html" class="Module">Data.Product</a>
+<a id="87" class="Keyword">open</a> <a id="92" class="Keyword">import</a> <a id="99" href="Data.Bool.html" class="Module">Data.Bool</a>
+<a id="109" class="Keyword">open</a> <a id="114" class="Keyword">import</a> <a id="121" href="Data.Vec.html" class="Module">Data.Vec</a>
+
+<a id="131" class="Keyword">open</a> <a id="136" class="Keyword">import</a> <a id="143" href="Core.html" class="Module">Core</a>
+<a id="148" class="Keyword">open</a> <a id="153" class="Keyword">import</a> <a id="160" href="Signature.html" class="Module">Signature</a>
+<a id="170" class="Keyword">open</a> <a id="175" class="Keyword">import</a> <a id="182" href="Canon.html" class="Module">Canon</a>
+
+<a id="189" class="Keyword">open</a> <a id="194" class="Keyword">import</a> <a id="201" href="Level.html" class="Module">Level</a> <a id="207" class="Symbol">as</a> <a id="210" class="Module">L</a>
+
+<a id="213" class="Keyword">module</a> <a id="BoolCanon"></a><a id="220" href="Canon.Bool.html#220" class="Module">BoolCanon</a> <a id="230" class="Keyword">where</a>
+
+  <a id="239" class="Keyword">data</a> <a id="BoolCanon.TBoolShape"></a><a id="244" href="Canon.Bool.html#244" class="Datatype">TBoolShape</a> <a id="255" class="Symbol">:</a> <a id="257" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="261" class="Keyword">where</a> <a id="BoolCanon.TBoolShape.bool"></a><a id="267" href="Canon.Bool.html#267" class="InductiveConstructor">bool</a> <a id="272" class="Symbol">:</a> <a id="274" href="Canon.Bool.html#244" class="Datatype">TBoolShape</a>
+  <a id="BoolCanon.TBoolΣ"></a><a id="287" href="Canon.Bool.html#287" class="Function">TBoolΣ</a> <a id="294" class="Symbol">=</a> <a id="296" href="Canon.Bool.html#244" class="Datatype">TBoolShape</a> <a id="307" href="Signature.html#791" class="InductiveConstructor Operator">▹</a> <a id="309" class="Symbol">λ</a> <a id="311" class="Keyword">where</a> <a id="317" href="Canon.Bool.html#267" class="InductiveConstructor">bool</a> <a id="322" class="Symbol">→</a> <a id="324" class="Number">0</a>
+
+  <a id="BoolCanon.bool′"></a><a id="329" href="Canon.Bool.html#329" class="Function">bool′</a> <a id="335" class="Symbol">:</a> <a id="337" class="Symbol">⦃</a> <a id="339" href="Canon.Bool.html#287" class="Function">TBoolΣ</a> <a id="346" href="Signature.html#4467" class="Record Operator">≼</a> <a id="348" href="Signature.html#861" class="Generalizable">σ</a> <a id="350" class="Symbol">⦄</a> <a id="352" class="Symbol">→</a> <a id="354" href="Signature.html#1143" class="Datatype">μ</a> <a id="356" href="Signature.html#861" class="Generalizable">σ</a>
+  <a id="360" href="Canon.Bool.html#329" class="Function">bool′</a> <a id="366" class="Symbol">=</a> <a id="368" href="Signature.html#6246" class="Function">inject</a> <a id="375" class="Symbol">(</a><a id="376" href="Canon.Bool.html#267" class="InductiveConstructor">bool</a> <a id="381" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="383" href="Level.html#457" class="InductiveConstructor">L.lift</a> <a id="390" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="392" class="Symbol">)</a>
+
+  <a id="397" class="Keyword">open</a> <a id="402" href="Signature.html#1597" class="Module">Algebra</a>
+
+  <a id="BoolCanon.BoolVal"></a><a id="413" href="Canon.Bool.html#413" class="Function">BoolVal</a> <a id="421" class="Symbol">:</a> <a id="423" href="Signature.html#1597" class="Record">Algebra</a> <a id="431" href="Canon.Bool.html#287" class="Function">TBoolΣ</a> <a id="438" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="442" href="Agda.Primitive.html#326" class="Primitive">Set</a>
+  <a id="448" href="Signature.html#1685" class="Field">alg</a> <a id="452" href="Canon.Bool.html#413" class="Function">BoolVal</a> <a id="460" class="Symbol">(</a><a id="461" href="Canon.Bool.html#267" class="InductiveConstructor">bool</a> <a id="466" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="468" href="Level.html#457" class="InductiveConstructor">L.lift</a> <a id="475" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="477" class="Symbol">)</a> <a id="479" class="Symbol">=</a> <a id="481" href="Agda.Builtin.Bool.html#163" class="Datatype">Bool</a>
+
+  <a id="BoolCanon.boolCanon"></a><a id="489" href="Canon.Bool.html#489" class="Function">boolCanon</a> <a id="499" class="Symbol">:</a> <a id="501" href="Canon.html#690" class="Record">Canon</a>
+  <a id="509" href="Canon.html#741" class="Field">Canon.ty</a>  <a id="519" href="Canon.Bool.html#489" class="Function">boolCanon</a> <a id="529" class="Symbol">=</a> <a id="531" href="Canon.Bool.html#287" class="Function">TBoolΣ</a>
+  <a id="540" href="Canon.html#768" class="Field">Canon.val</a> <a id="550" href="Canon.Bool.html#489" class="Function">boolCanon</a> <a id="560" class="Symbol">=</a> <a id="562" href="Canon.Bool.html#413" class="Function">BoolVal</a>
+
+<a id="571" class="Keyword">open</a> <a id="576" href="Canon.Bool.html#220" class="Module">BoolCanon</a> <a id="586" class="Keyword">public</a>
+</pre></body></html>

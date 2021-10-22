@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Composable.Properties.ExpressionComposition</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Composable.Properties.ExpressionComposition.html" class="Module">Composable.Properties.ExpressionComposition</a> <a id="88" class="Keyword">where</a>
+
+<a id="95" class="Keyword">open</a> <a id="100" class="Keyword">import</a> <a id="107" href="Data.Product.html" class="Module">Data.Product</a>
+<a id="120" class="Keyword">open</a> <a id="125" class="Keyword">import</a> <a id="132" href="Data.Empty.html" class="Module">Data.Empty</a>
+<a id="143" class="Keyword">open</a> <a id="148" class="Keyword">import</a> <a id="155" href="Data.These.html" class="Module">Data.These</a>
+
+<a id="167" class="Keyword">open</a> <a id="172" class="Keyword">import</a> <a id="179" href="Relation.Ternary.Structures.Syntax.html" class="Module">Relation.Ternary.Structures.Syntax</a> <a id="214" class="Keyword">hiding</a> <a id="221" class="Symbol">(</a><a id="222" href="Relation.Ternary.Structures.PartialJoinoid.html#1135" class="Function Operator">_∣_</a><a id="225" class="Symbol">)</a>
+<a id="227" class="Keyword">open</a> <a id="232" class="Keyword">import</a> <a id="239" href="Relation.Ternary.Construct.Sets.Union.html" class="Module">Relation.Ternary.Construct.Sets.Union</a>
+<a id="277" class="Keyword">open</a> <a id="282" class="Keyword">import</a> <a id="289" href="Relation.Ternary.Construct.Sets.html" class="Module">Relation.Ternary.Construct.Sets</a>
+<a id="321" class="Keyword">open</a> <a id="326" class="Keyword">import</a> <a id="333" href="Relation.Ternary.Construct.Function.html" class="Module">Relation.Ternary.Construct.Function</a> 
+
+<a id="371" class="Keyword">open</a> <a id="376" class="Keyword">import</a> <a id="383" href="Relation.Ternary.Structures.Syntax.html" class="Module">Relation.Ternary.Structures.Syntax</a>
+
+<a id="419" class="Keyword">open</a> <a id="424" class="Keyword">import</a> <a id="431" href="Relation.Binary.PropositionalEquality.html" class="Module">Relation.Binary.PropositionalEquality</a>
+
+<a id="470" class="Keyword">open</a> <a id="475" class="Keyword">import</a> <a id="482" href="Composable.Data.Instances.html" class="Module">Composable.Data.Instances</a>
+<a id="508" class="Keyword">open</a> <a id="513" class="Keyword">import</a> <a id="520" href="Composable.Transformer.html" class="Module">Composable.Transformer</a>
+
+<a id="544" class="Keyword">open</a> <a id="549" class="Keyword">import</a> <a id="556" href="Function.html" class="Module">Function</a> 
+
+<a id="567" class="Keyword">open</a> <a id="572" href="Relation.Ternary.Construct.Sets.Union.html#3689" class="Module">Union</a>
+
+<a id="579" class="Keyword">module</a> <a id="586" href="Composable.Properties.ExpressionComposition.html#586" class="Module">_</a> <a id="588" class="Symbol">{</a><a id="589" href="Composable.Properties.ExpressionComposition.html#589" class="Bound">F&#39;</a> <a id="592" class="Symbol">:</a> <a id="594" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="598" class="Symbol">→</a> <a id="600" href="Agda.Primitive.html#326" class="Primitive">Set</a><a id="603" class="Symbol">}</a> <a id="605" class="Keyword">where</a> 
+
+  <a id="615" href="Composable.Properties.ExpressionComposition.html#615" class="Function">εe</a> <a id="618" class="Symbol">:</a> <a id="620" href="Composable.Data.Instances.html#2868" class="Function">ExpressionType</a> <a id="635" href="Relation.Ternary.Structures.PartialMonoid.html#641" class="Function">ε</a> <a id="637" href="Composable.Properties.ExpressionComposition.html#589" class="Bound">F&#39;</a>
+  <a id="642" href="Composable.Transformer.html#1017" class="Field">closer</a> <a id="649" href="Composable.Properties.ExpressionComposition.html#615" class="Function">εe</a> <a id="652" href="Composable.Properties.ExpressionComposition.html#652" class="Bound">ξ</a> <a id="654" href="Composable.Properties.ExpressionComposition.html#654" class="Bound">R</a> <a id="656" href="Composable.Properties.ExpressionComposition.html#656" class="Bound">t</a> <a id="658" class="Symbol">=</a> <a id="660" href="Data.Empty.html#526" class="Datatype">⊥</a>
+
+  
+
+<a id="667" class="Comment">{-   
+  postulate ⟨⊙⟩e-unit : ∀ {E : ExpressionType T₁ F&#39;} →
+              ------------------------------
+              E ⊙⟨ ∙-idʳ ⟩e εe ≣ E
+-}</a>
+<a id="811" class="Comment">--   inja (⟨⊙⟩e-unit {t = t}) x with from-inv&#39; ∙-idʳ t</a>
+<a id="866" class="Comment">--   ... | From.this t refl refl = {!!}</a>
+<a id="906" class="Comment">--   injb ⟨⊙⟩e-unit ()</a>
+<a id="929" class="Comment">--   from (⟨⊙⟩e-unit {t = t}) x with from-inv&#39; ∙-idʳ t</a>
+<a id="984" class="Comment">--   ... | From.this t refl refl = this {!x!}</a>
+<a id="1030" class="Comment">--   a-inv ⟨⊙⟩e-unit = {!!}</a>
+<a id="1058" class="Comment">--   b-inv ⟨⊙⟩e-unit = {!!}</a>
+<a id="1086" class="Comment">--   from-inv ⟨⊙⟩e-unit = {!!}</a>
+<a id="1117" class="Comment">-- {-</a>
+
+<a id="1124" class="Comment">--   inja (⟨∙⟩-unit {t = t}) x with from-inv&#39; ∙-idʳ t</a>
+<a id="1178" class="Comment">--   ... | From.this t refl refl = {!x!}</a>
+<a id="1219" class="Comment">--   injb ⟨∙⟩-unit = {!!}</a>
+<a id="1245" class="Comment">--   from (⟨∙⟩-unit {t = t}) x with from-inv&#39; ∙-idʳ t</a>
+<a id="1299" class="Comment">--   ... | From.this t refl refl = this {!x!}</a>
+<a id="1345" class="Comment">--   a-inv ⟨∙⟩-unit = {!!}</a>
+<a id="1372" class="Comment">--   b-inv ⟨∙⟩-unit = {!!}</a>
+<a id="1399" class="Comment">--   from-inv ⟨∙⟩-unit = {!!}</a>
+<a id="1429" class="Comment">-- -}</a>
+
+<a id="1436" class="Comment">--   postulate</a>
+<a id="1451" class="Comment">--     ⟨∙⟩-comm : ∀ {E₁ : ExpressionType T₁ F&#39;}</a>
+<a id="1499" class="Comment">--                  {E₂ E₃}</a>
+<a id="1527" class="Comment">--                  {σt : T₁ ∙ T₂ ≣ T₃} →</a>
+      
+<a id="1576" class="Comment">--                  E₁ ⊙⟨ σt ⟩e E₂ ≣ E₃ →</a>
+<a id="1618" class="Comment">--                  -------------------------</a>
+<a id="1664" class="Comment">--                  E₂ ⊙⟨ ∙-comm σt ⟩e E₁ ≣ E₃</a>
+          
+  
+<a id="1725" class="Comment">--   postulate</a>
+<a id="1740" class="Comment">--     ⟨∙⟩-assoc : ∀ {T₁₂ T₁₂₃}</a>
+<a id="1772" class="Comment">--                   {σt₁ : T₁  ∙ T₂ ≣ T₁₂ }</a>
+<a id="1817" class="Comment">--                   {σt₂ : T₁₂ ∙ T₃ ≣ T₁₂₃}</a>
+<a id="1862" class="Comment">--                   {E₁ : ExpressionType T₁ F&#39;}{E₂ E₃ E₁₂ E₁₂₃} →</a>
+<a id="1929" class="Comment">--                   (let (_ , α₁ , α₂ ) = ∙-assocᵣ σt₁ σt₂) →</a>
+
+<a id="1993" class="Comment">--                   E₁  ⊙⟨ σt₁ ⟩e E₂ ≣ E₁₂  →</a>
+<a id="2040" class="Comment">--                   E₁₂ ⊙⟨ σt₂ ⟩e E₃ ≣ E₁₂₃ →</a>
+<a id="2087" class="Comment">--                   --------------------------------------------------------</a>
+<a id="2165" class="Comment">--                   ∃[ E₂₃ ] (E₁ ⊙⟨ α₁ ⟩e E₂₃ ≣ E₁₂₃ × E₂ ⊙⟨ α₂ ⟩e E₃ ≣ E₂₃)</a>
+  
+
+<a id="2247" class="Comment">--   postulate</a>
+<a id="2262" class="Comment">--     ⟨∙⟩-idem : ∀ {E : ExpressionType T F} →</a>
+
+<a id="2310" class="Comment">--                  -----------------------------</a>
+<a id="2360" class="Comment">--                  E ⊙⟨ (λ _ → ∙-copy _) ⟩e E ≣ E </a>
+  
+</pre></body></html>

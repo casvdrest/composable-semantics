@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Languages.Expr</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Languages.Expr.html" class="Module">Languages.Expr</a> <a id="59" class="Keyword">where</a> 
+
+<a id="67" class="Keyword">open</a> <a id="72" class="Keyword">import</a> <a id="79" href="Core.html" class="Module">Core</a>
+<a id="84" class="Keyword">open</a> <a id="89" class="Keyword">import</a> <a id="96" href="Canon.html" class="Module">Canon</a>
+<a id="102" class="Keyword">open</a> <a id="107" class="Keyword">import</a> <a id="114" href="Box.html" class="Module">Box</a>
+<a id="118" class="Keyword">open</a> <a id="123" class="Keyword">import</a> <a id="130" href="Fragment.html" class="Module">Fragment</a>
+
+<a id="140" class="Keyword">open</a> <a id="145" class="Keyword">import</a> <a id="152" href="Fragment.Arith.html" class="Module">Fragment.Arith</a>
+<a id="167" class="Keyword">open</a> <a id="172" class="Keyword">import</a> <a id="179" href="Fragment.Boolean.html" class="Module">Fragment.Boolean</a>
+<a id="196" class="Keyword">open</a> <a id="201" class="Keyword">import</a> <a id="208" href="Fragment.Pair.html" class="Module">Fragment.Pair</a>
+<a id="222" class="Keyword">open</a> <a id="227" class="Keyword">import</a> <a id="234" href="Fragment.Maybe.html" class="Module">Fragment.Maybe</a>
+
+<a id="250" class="Keyword">module</a> <a id="257" href="Languages.Expr.html#257" class="Module">_</a> <a id="259" class="Symbol">{</a><a id="260" href="Languages.Expr.html#260" class="Bound">Ix</a> <a id="263" class="Symbol">:</a> <a id="265" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="269" class="Symbol">→</a> <a id="271" href="Agda.Primitive.html#326" class="Primitive">Set</a><a id="274" class="Symbol">}</a> <a id="276" class="Symbol">⦃</a> <a id="278" href="Languages.Expr.html#278" class="Bound">_</a> <a id="280" class="Symbol">:</a> <a id="282" class="Symbol">∀</a> <a id="284" class="Symbol">{</a><a id="285" href="Languages.Expr.html#285" class="Bound">X</a><a id="286" class="Symbol">}</a> <a id="288" class="Symbol">→</a> <a id="290" href="Box.html#172" class="Record">Rel₂</a> <a id="295" class="Symbol">_</a> <a id="297" class="Symbol">(</a><a id="298" href="Languages.Expr.html#260" class="Bound">Ix</a> <a id="301" href="Languages.Expr.html#285" class="Bound">X</a><a id="302" class="Symbol">)</a> <a id="304" class="Symbol">⦄</a> <a id="306" class="Keyword">where</a>
+
+  <a id="315" href="Languages.Expr.html#315" class="Function">lang-expr</a> <a id="325" class="Symbol">=</a> <a id="327" href="Fragment.Arith.html#861" class="Function">Arith</a> <a id="333" href="Fragment.html#3278" class="Function">⊙⟨</a> <a id="336" href="Canon.html#8418" class="Function">∙-disjoint</a> <a id="347" href="Fragment.html#3278" class="Function">⟩</a> <a id="349" href="Fragment.Boolean.html#1073" class="Function">Boolean</a> <a id="357" href="Fragment.html#3278" class="Function">⊙⟨</a> <a id="360" href="Canon.html#8418" class="Function">∙-disjoint</a> <a id="371" href="Fragment.html#3278" class="Function">⟩</a> <a id="373" href="Fragment.Pair.html#1089" class="Function">Pair</a> <a id="378" href="Fragment.html#3278" class="Function">⊙⟨</a> <a id="381" href="Canon.html#8418" class="Function">∙-disjoint</a> <a id="392" href="Fragment.html#3278" class="Function">⟩</a> <a id="394" href="Fragment.Maybe.html#1132" class="Function">Maybe&#39;</a> <a id="401" class="Symbol">{</a><a id="402" href="Languages.Expr.html#260" class="Bound">Ix</a><a id="404" class="Symbol">}</a>
+
+</pre></body></html>

@@ -1,0 +1,9 @@
+*.agdai
+MAlonzo/**
+_build/
+writeup/POPL22/tex/sections/*.tex
+*.pdf
+*.log
+**/build/
+
+.DS_STORE

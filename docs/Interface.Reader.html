@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Interface.Reader</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Interface.Reader.html" class="Module">Interface.Reader</a> <a id="61" class="Keyword">where</a>
+
+<a id="68" class="Keyword">open</a> <a id="73" class="Keyword">import</a> <a id="80" href="Relation.Unary.html" class="Module">Relation.Unary</a>                        <a id="118" class="Keyword">using</a> <a id="124" class="Symbol">(</a><a id="125" href="Relation.Unary.html#3359" class="Function">IUniversal</a> <a id="136" class="Symbol">;</a> <a id="138" href="Relation.Unary.html#4338" class="Function Operator">_⇒_</a><a id="141" class="Symbol">)</a>
+<a id="143" class="Keyword">import</a>      <a id="155" href="Relation.Unary.Closure.Base.html" class="Module">Relation.Unary.Closure.Base</a> <a id="183" class="Symbol">as</a> <a id="186" class="Module">Clos</a>
+<a id="191" class="Keyword">open</a> <a id="196" class="Keyword">import</a> <a id="203" href="Relation.Binary.html" class="Module">Relation.Binary</a>                       <a id="241" class="Keyword">using</a> <a id="247" class="Symbol">(</a><a id="248" href="Relation.Binary.Core.html#882" class="Function">Rel</a><a id="251" class="Symbol">)</a>
+<a id="253" class="Keyword">open</a> <a id="258" class="Keyword">import</a> <a id="265" href="Relation.Binary.PropositionalEquality.html" class="Module">Relation.Binary.PropositionalEquality</a>
+<a id="303" class="Keyword">open</a> <a id="308" class="Keyword">import</a> <a id="315" href="Relation.Binary.Structures.html" class="Module">Relation.Binary.Structures</a>
+
+<a id="343" class="Keyword">open</a> <a id="348" class="Keyword">import</a> <a id="355" href="Core.html" class="Module">Core</a>
+<a id="360" class="Keyword">open</a> <a id="365" class="Keyword">import</a> <a id="372" href="Signature.html" class="Module">Signature</a>
+<a id="382" class="Keyword">open</a> <a id="387" class="Keyword">import</a> <a id="394" href="Structure.Monad.html" class="Module">Structure.Monad</a>
+
+<a id="411" class="Keyword">open</a> <a id="416" class="Keyword">import</a> <a id="423" href="Data.List.html" class="Module">Data.List</a>
+<a id="433" class="Keyword">open</a> <a id="438" class="Keyword">import</a> <a id="445" href="Data.List.Relation.Unary.All.html" class="Module">Data.List.Relation.Unary.All</a>
+<a id="474" class="Keyword">open</a> <a id="479" class="Keyword">import</a> <a id="486" href="Data.List.Relation.Binary.Sublist.Propositional.html" class="Module">Data.List.Relation.Binary.Sublist.Propositional</a>
+
+<a id="535" class="Keyword">open</a> <a id="540" class="Keyword">import</a> <a id="547" href="Function.html" class="Module">Function</a>
+<a id="556" class="Keyword">open</a> <a id="561" class="Keyword">import</a> <a id="568" href="Level.html" class="Module">Level</a>
+
+<a id="575" class="Keyword">open</a> <a id="580" class="Keyword">import</a> <a id="587" href="MonadicFragment.html" class="Module">MonadicFragment</a>
+<a id="603" class="Keyword">open</a> <a id="608" class="Keyword">import</a> <a id="615" href="Canon.Function.html" class="Module">Canon.Function</a>
+
+<a id="631" class="Keyword">open</a> <a id="636" class="Keyword">import</a> <a id="643" href="Box.html" class="Module">Box</a>
+
+<a id="648" class="Keyword">module</a> <a id="655" href="Interface.Reader.html#655" class="Module">_</a> <a id="657" href="Interface.Reader.html#657" class="Bound">Ix</a> <a id="660" class="Symbol">⦃</a> <a id="662" href="Interface.Reader.html#662" class="Bound">ix-rel</a> <a id="669" class="Symbol">:</a> <a id="671" class="Symbol">∀</a> <a id="673" class="Symbol">{</a><a id="674" href="Interface.Reader.html#674" class="Bound">X</a><a id="675" class="Symbol">}</a> <a id="677" class="Symbol">→</a> <a id="679" href="Box.html#172" class="Record">Rel₂</a> <a id="684" class="Symbol">_</a> <a id="686" class="Symbol">(</a><a id="687" href="Interface.Reader.html#657" class="Bound">Ix</a> <a id="690" href="Interface.Reader.html#674" class="Bound">X</a><a id="691" class="Symbol">)</a> <a id="693" class="Symbol">⦄</a> <a id="695" class="Symbol">(</a><a id="696" href="Interface.Reader.html#696" class="Bound">M</a> <a id="698" class="Symbol">:</a> <a id="700" href="MonadicFragment.html#768" class="Function">Eff</a> <a id="704" href="Interface.Reader.html#657" class="Bound">Ix</a><a id="706" class="Symbol">)</a> <a id="708" class="Keyword">where</a>
+  
+  <a id="719" class="Keyword">record</a> <a id="726" href="Interface.Reader.html#726" class="Record">Reader</a> <a id="733" class="Symbol">:</a> <a id="735" href="Agda.Primitive.html#326" class="Primitive">Set₁</a> <a id="740" class="Keyword">where</a>
+
+    <a id="751" class="Keyword">field</a> 
+      <a id="764" class="Comment">--</a>
+      <a id="773" class="Comment">-- Returns the current environment </a>
+      <a id="815" class="Comment">-- </a>
+      <a id="825" href="Interface.Reader.html#825" class="Field">ask</a>   <a id="831" class="Symbol">:</a> <a id="833" class="Symbol">∀</a> <a id="835" class="Symbol">{</a><a id="836" href="Interface.Reader.html#836" class="Bound">Γ</a> <a id="838" href="Interface.Reader.html#838" class="Bound">V</a><a id="839" class="Symbol">}</a> <a id="841" class="Symbol">→</a> <a id="843" href="Relation.Unary.html#3359" class="Function">∀[</a> <a id="846" href="Interface.Reader.html#696" class="Bound">M</a> <a id="848" href="Interface.Reader.html#838" class="Bound">V</a> <a id="850" href="Interface.Reader.html#836" class="Bound">Γ</a> <a id="852" class="Symbol">(</a><a id="853" href="Core.html#583" class="Function">Env</a> <a id="857" class="Symbol">(</a><a id="858" href="Signature.html#1143" class="Datatype">μ</a> <a id="860" href="Signature.html#861" class="Generalizable">σ</a><a id="861" class="Symbol">)</a> <a id="863" href="Interface.Reader.html#838" class="Bound">V</a> <a id="865" href="Interface.Reader.html#836" class="Bound">Γ</a><a id="866" class="Symbol">)</a> <a id="868" href="Relation.Unary.html#3359" class="Function">]</a>
+
+      <a id="877" class="Comment">-- </a>
+      <a id="887" class="Comment">-- Run a given computation under a transformed environment</a>
+      <a id="952" class="Comment">-- </a>
+      <a id="962" href="Interface.Reader.html#962" class="Field">local</a> <a id="968" class="Symbol">:</a> <a id="970" class="Symbol">∀</a> <a id="972" class="Symbol">{</a><a id="973" href="Interface.Reader.html#973" class="Bound">σ</a><a id="974" class="Symbol">}</a> <a id="976" class="Symbol">{</a><a id="977" href="Interface.Reader.html#977" class="Bound">Γ</a> <a id="979" href="Interface.Reader.html#979" class="Bound">Γ′</a> <a id="982" href="Interface.Reader.html#982" class="Bound">V</a><a id="983" class="Symbol">}</a> <a id="985" href="Interface.Reader.html#985" class="Bound">t</a> <a id="987" class="Symbol">→</a>  
+                <a id="1007" class="Keyword">let</a> <a id="1011" class="Keyword">open</a> <a id="1016" href="Relation.Unary.Closure.Base.html" class="Module">Clos</a> <a id="1021" class="Symbol">{</a><a id="1022" class="Argument">A</a> <a id="1024" class="Symbol">=</a> <a id="1026" class="Symbol">(</a><a id="1027" href="Interface.Reader.html#657" class="Bound">Ix</a> <a id="1030" class="Symbol">(</a><a id="1031" href="Signature.html#1143" class="Datatype">μ</a> <a id="1033" href="Interface.Reader.html#973" class="Bound">σ</a><a id="1034" class="Symbol">))}</a> <a id="1038" class="Symbol">(</a><a id="1039" href="Box.html#248" class="Field">Rel₂.R</a> <a id="1046" href="Interface.Reader.html#662" class="Bound">ix-rel</a><a id="1052" class="Symbol">)</a> <a id="1054" class="Keyword">in</a>
+
+                <a id="1074" href="Relation.Unary.html#3359" class="Function">∀[</a>  <a id="1078" href="Relation.Unary.Closure.Base.html#843">□</a> <a id="1080" class="Symbol">(</a><a id="1081" href="Core.html#583" class="Function">Env</a> <a id="1085" class="Symbol">_</a> <a id="1087" href="Interface.Reader.html#982" class="Bound">V</a> <a id="1089" href="Interface.Reader.html#977" class="Bound">Γ</a> <a id="1091" href="Relation.Unary.html#4338" class="Function Operator">⇒</a> <a id="1093" href="Core.html#583" class="Function">Env</a> <a id="1097" class="Symbol">_</a> <a id="1099" href="Interface.Reader.html#982" class="Bound">V</a> <a id="1101" href="Interface.Reader.html#979" class="Bound">Γ′</a><a id="1103" class="Symbol">)</a>
+                 <a id="1122" href="Relation.Unary.html#4338" class="Function Operator">⇒</a>  <a id="1125" href="Interface.Reader.html#696" class="Bound">M</a> <a id="1127" class="Symbol">{</a><a id="1128" href="Interface.Reader.html#973" class="Bound">σ</a><a id="1129" class="Symbol">}</a> <a id="1131" href="Interface.Reader.html#982" class="Bound">V</a> <a id="1133" href="Interface.Reader.html#979" class="Bound">Γ′</a> <a id="1136" class="Symbol">(</a><a id="1137" href="Interface.Reader.html#982" class="Bound">V</a> <a id="1139" href="Interface.Reader.html#985" class="Bound">t</a><a id="1140" class="Symbol">)</a>
+                 <a id="1159" href="Relation.Unary.html#4338" class="Function Operator">⇒</a>  <a id="1162" href="Interface.Reader.html#696" class="Bound">M</a> <a id="1164" href="Interface.Reader.html#982" class="Bound">V</a> <a id="1166" href="Interface.Reader.html#977" class="Bound">Γ</a>  <a id="1169" class="Symbol">(</a><a id="1170" href="Interface.Reader.html#982" class="Bound">V</a> <a id="1172" href="Interface.Reader.html#985" class="Bound">t</a><a id="1173" class="Symbol">)</a>
+                 <a id="1192" href="Relation.Unary.html#3359" class="Function">]</a>
+
+  
+</pre></body></html>

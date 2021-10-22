@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Composable.Properties.Domains</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Composable.Properties.Domains.html" class="Module">Composable.Properties.Domains</a> <a id="74" class="Keyword">where</a>
+
+<a id="81" class="Keyword">open</a> <a id="86" class="Keyword">import</a> <a id="93" href="Data.Product.html" class="Module">Data.Product</a>
+<a id="106" class="Keyword">open</a> <a id="111" class="Keyword">import</a> <a id="118" href="Data.Empty.html" class="Module">Data.Empty</a>
+<a id="129" class="Keyword">open</a> <a id="134" class="Keyword">import</a> <a id="141" href="Data.Unit.html" class="Module">Data.Unit</a>
+
+<a id="152" class="Keyword">open</a> <a id="157" class="Keyword">import</a> <a id="164" href="Relation.Unary.html" class="Module">Relation.Unary</a> <a id="179" class="Keyword">using</a> <a id="185" class="Symbol">(</a><a id="186" href="Relation.Unary.html#1391" class="Function">U</a><a id="187" class="Symbol">)</a>
+
+<a id="190" class="Keyword">open</a> <a id="195" class="Keyword">import</a> <a id="202" href="Relation.Binary.html" class="Module">Relation.Binary</a>
+<a id="218" class="Keyword">open</a> <a id="223" class="Keyword">import</a> <a id="230" href="Relation.Binary.PropositionalEquality.html" class="Module">Relation.Binary.PropositionalEquality</a> <a id="268" class="Keyword">using</a> <a id="274" class="Symbol">(</a><a id="275" href="Agda.Builtin.Equality.html#151" class="Datatype Operator">_≡_</a> <a id="279" class="Symbol">;</a> <a id="281" href="Agda.Builtin.Equality.html#208" class="InductiveConstructor">refl</a><a id="285" class="Symbol">)</a>
+
+<a id="288" class="Keyword">open</a> <a id="293" class="Keyword">import</a> <a id="300" href="Relation.Ternary.Core.html" class="Module">Relation.Ternary.Core</a>
+
+<a id="323" class="Keyword">open</a> <a id="328" class="Keyword">import</a> <a id="335" href="Relation.Ternary.Structures.Syntax.html" class="Module">Relation.Ternary.Structures.Syntax</a> <a id="370" class="Keyword">hiding</a> <a id="377" class="Symbol">(</a><a id="378" href="Relation.Ternary.Structures.PartialJoinoid.html#1135" class="Function Operator">_∣_</a><a id="381" class="Symbol">)</a>
+<a id="383" class="Keyword">open</a> <a id="388" class="Keyword">import</a> <a id="395" href="Relation.Ternary.Construct.Sets.Union.html" class="Module">Relation.Ternary.Construct.Sets.Union</a>
+<a id="433" class="Keyword">open</a> <a id="438" class="Keyword">import</a> <a id="445" href="Relation.Ternary.Construct.Sets.html" class="Module">Relation.Ternary.Construct.Sets</a>
+<a id="477" class="Keyword">open</a> <a id="482" class="Keyword">import</a> <a id="489" href="Relation.Ternary.Construct.Function.html" class="Module">Relation.Ternary.Construct.Function</a> 
+
+<a id="527" class="Keyword">open</a> <a id="532" class="Keyword">import</a> <a id="539" href="Relation.Ternary.Structures.html" class="Module">Relation.Ternary.Structures</a> <a id="567" class="Keyword">using</a> <a id="573" class="Symbol">(</a><a id="574" href="Relation.Ternary.Structures.PartialSemigroup.html#346" class="Record">IsPartialSemigroup</a> <a id="593" class="Symbol">;</a> <a id="595" href="Relation.Ternary.Structures.PartialMonoid.html#606" class="Record">Emptiness</a><a id="604" class="Symbol">)</a>
+<a id="606" class="Keyword">open</a> <a id="611" class="Keyword">import</a> <a id="618" href="Relation.Ternary.Structures.Commutative.html" class="Module">Relation.Ternary.Structures.Commutative</a>
+<a id="658" class="Keyword">open</a> <a id="663" class="Keyword">import</a> <a id="670" href="Relation.Ternary.Structures.Contractive.html" class="Module">Relation.Ternary.Structures.Contractive</a>
+
+<a id="711" class="Keyword">open</a> <a id="716" class="Keyword">import</a> <a id="723" href="Composable.Data.Instances.html" class="Module">Composable.Data.Instances</a>
+<a id="749" class="Keyword">open</a> <a id="754" class="Keyword">import</a> <a id="761" href="Composable.Transformer.html" class="Module">Composable.Transformer</a>
+
+<a id="785" class="Keyword">open</a> <a id="790" class="Keyword">import</a> <a id="797" href="Composable.Properties.ExpressionComposition.html" class="Module">Composable.Properties.ExpressionComposition</a>
+<a id="841" class="Keyword">open</a> <a id="846" class="Keyword">import</a> <a id="853" href="Composable.Properties.ValueComposition.html" class="Module">Composable.Properties.ValueComposition</a>
+
+<a id="893" class="Keyword">open</a> <a id="898" class="Keyword">import</a> <a id="905" href="Function.html" class="Module">Function</a>
+<a id="914" class="Keyword">open</a> <a id="919" class="Keyword">import</a> <a id="926" href="Function.Construct.Identity.html" class="Module">Function.Construct.Identity</a>
+<a id="954" class="Keyword">open</a> <a id="959" class="Keyword">import</a> <a id="966" href="Function.Construct.Composition.html" class="Module">Function.Construct.Composition</a>
+
+<a id="998" class="Keyword">open</a> <a id="1003" class="Keyword">import</a> <a id="1010" href="Level.html" class="Module">Level</a>
+
+<a id="1017" class="Keyword">module</a> <a id="1024" href="Composable.Properties.Domains.html#1024" class="Module">_</a> <a id="1026" class="Symbol">{</a><a id="1027" href="Composable.Properties.Domains.html#1027" class="Bound">F</a> <a id="1029" class="Symbol">:</a> <a id="1031" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="1035" class="Symbol">→</a> <a id="1037" href="Agda.Primitive.html#326" class="Primitive">Set</a><a id="1040" class="Symbol">}</a> <a id="1042" class="Keyword">where</a>
+
+  <a id="1051" class="Keyword">variable</a>
+    <a id="1064" href="Composable.Properties.Domains.html#1064" class="Generalizable">Δ</a> <a id="1066" href="Composable.Properties.Domains.html#1066" class="Generalizable">Δ₁</a> <a id="1069" href="Composable.Properties.Domains.html#1069" class="Generalizable">Δ₂</a> <a id="1072" href="Composable.Properties.Domains.html#1072" class="Generalizable">Δ₃</a> <a id="1075" class="Symbol">:</a> <a id="1077" href="Composable.Data.Instances.html#3656" class="Record">Domains</a> <a id="1085" href="Composable.Properties.Domains.html#1027" class="Bound">F</a>
+
+  <a id="1090" class="Keyword">open</a> <a id="1095" href="Composable.Data.Instances.html#3656" class="Module">Domains</a>
+  
+  <a id="1108" href="Composable.Properties.Domains.html#1108" class="Function">⊙-ε</a> <a id="1112" class="Symbol">:</a> <a id="1114" href="Composable.Data.Instances.html#3656" class="Record">Domains</a> <a id="1122" href="Composable.Properties.Domains.html#1027" class="Bound">F</a>
+  <a id="1126" href="Composable.Data.Instances.html#3709" class="Field">ty</a>   <a id="1131" href="Composable.Properties.Domains.html#1108" class="Function">⊙-ε</a> <a id="1135" class="Symbol">=</a> <a id="1137" href="Function.Base.html#636" class="Function">const</a> <a id="1143" href="Data.Empty.html#526" class="Datatype">⊥</a>
+  <a id="1147" href="Composable.Data.Instances.html#3734" class="Field">expr</a> <a id="1152" href="Composable.Properties.Domains.html#1108" class="Function">⊙-ε</a> <a id="1156" class="Symbol">=</a> <a id="1158" href="Composable.Properties.ExpressionComposition.html#615" class="Function">εe</a>
+  <a id="1163" href="Composable.Data.Instances.html#3769" class="Field">val</a>  <a id="1168" href="Composable.Properties.Domains.html#1108" class="Function">⊙-ε</a> <a id="1172" class="Symbol">=</a> <a id="1174" href="Composable.Properties.ValueComposition.html#906" class="Function">εv</a>
+  
+  <a id="1182" class="Keyword">open</a> <a id="1187" href="Composable.Data.Instances.html#4143" class="Module Operator">_⊙_≣_</a>
+
+  <a id="1196" class="Comment">-- -- Domain composition is commutative</a>
+  <a id="1238" class="Comment">-- instance ⊙-comm : IsCommutative (⊙-rel {F})</a>
+  <a id="1287" class="Comment">-- σt (IsCommutative.∙-comm ⊙-comm              σ) = ∙-comm (σt σ)</a>
+  <a id="1356" class="Comment">-- σe (IsCommutative.∙-comm ⊙-comm {a} {b} {ab} σ) = ⟨∙⟩-comm {E₁ = expr a} {expr b} {expr ab} {σt = σt σ} (σe σ)</a>
+  <a id="1472" class="Comment">-- σv (IsCommutative.∙-comm ⊙-comm {a} {b} {ab} σ) = ⟨⊎⟩-comm {!!} {!!}</a>
+
+  <a id="1547" class="Comment">-- -- Domain composition is associative</a>
+  <a id="1589" class="Comment">-- ⊙-assoc : ∀ {Δ₁₂ Δ₁₂₃} → Δ₁ ⊙ Δ₂ ≣ Δ₁₂ → Δ₁₂ ⊙ Δ₃ ≣ Δ₁₂₃ → ∃ λ Δ₂₃ → (Δ₁ ⊙ Δ₂₃ ≣ Δ₁₂₃) × (Δ₂ ⊙ Δ₃ ≣ Δ₂₃)</a>
+  <a id="1699" class="Comment">-- ⊙-assoc {Δ₁} {Δ₂} {Δ₃} {Δ₁₂} {Δ₁₂₃} σ₁ σ₂ = Δ₂₃ , assoc₁ , assoc₂</a>
+
+  <a id="1771" class="Comment">--   where open Domains</a>
+
+  <a id="1798" class="Comment">--         ty-assoc   = ∙-assocᵣ (σt σ₁) (σt σ₂)</a>
+  <a id="1849" class="Comment">--         expr-assoc = ⟨∙⟩-assoc {σt₁ = σt σ₁} {σt₂ = σt σ₂} {E₁ = expr Δ₁} {expr Δ₂} {expr Δ₃} {expr Δ₁₂} {expr Δ₁₂₃} (σe σ₁) (σe σ₂)</a>
+  <a id="1987" class="Comment">--         val-assoc  = ⟨⊎⟩-assoc {σt₁ = σt σ₁} {σt₂ = σt σ₂} (σv σ₁) (σv σ₂)</a>
+
+  <a id="2068" class="Comment">--         Δ₂₃ : Domains F</a>
+  <a id="2097" class="Comment">--         ty   Δ₂₃ = proj₁ ty-assoc</a>
+  <a id="2136" class="Comment">--         expr Δ₂₃ = proj₁ expr-assoc</a>
+  <a id="2177" class="Comment">--         val  Δ₂₃ = proj₁ val-assoc</a>
+
+  <a id="2218" class="Comment">--         assoc₁ : Δ₁ ⊙ Δ₂₃ ≣ Δ₁₂₃</a>
+  <a id="2256" class="Comment">--         σt assoc₁ = proj₁ (proj₂ ty-assoc)</a>
+  <a id="2304" class="Comment">--         σe assoc₁ = let a₁ = proj₁ (proj₂ expr-assoc) in a₁</a>
+  <a id="2369" class="Comment">--         σv assoc₁ = let a₁ = proj₁ (proj₂ val-assoc) in a₁</a>
+
+  <a id="2434" class="Comment">--         assoc₂ : Δ₂ ⊙ Δ₃ ≣ Δ₂₃</a>
+  <a id="2470" class="Comment">--         σt assoc₂ = proj₂ (proj₂ ty-assoc)</a>
+  <a id="2518" class="Comment">--         σe assoc₂ = let a₂ = proj₂ (proj₂ expr-assoc) in a₂</a>
+  <a id="2583" class="Comment">--         σv assoc₂ = let a₂ = proj₂ (proj₂ val-assoc) in a₂</a>
+
+  <a id="2648" class="Comment">-- postulate ⊙-semigroupˡ : IsPartialSemigroupˡ _≋_ ⊙-rel</a>
+  <a id="2708" class="Comment">-- {-</a>
+  <a id="2716" class="Comment">-- IsPartialSemigroupˡ.≈-equivalence ⊙-semigroupˡ = ≋-isEquivalence</a>
+
+  <a id="2787" class="Comment">--   where</a>
+  <a id="2800" class="Comment">--     open _≋_</a>
+
+  <a id="2819" class="Comment">--     postulate ≋-refl : Δ ≋ Δ</a>
+  <a id="2853" class="Comment">--     {-</a>
+  <a id="2865" class="Comment">--     ≋-ty   ≋-refl = id-↔ _</a>
+  <a id="2897" class="Comment">--     ≋-expr ≋-refl = {!!}</a>
+  <a id="2927" class="Comment">--     ≋-val  ≋-refl = {!!}</a>
+  <a id="2957" class="Comment">--     -}</a>
+
+  <a id="2970" class="Comment">--     open Inverse</a>
+
+  <a id="2993" class="Comment">--     ↔-sym : ∀ {A B : Set} → A ↔ B → B ↔ A</a>
+  <a id="3040" class="Comment">--     f   (↔-sym eq) = f⁻¹ eq</a>
+  <a id="3073" class="Comment">--     f⁻¹ (↔-sym eq) = f eq</a>
+  <a id="3104" class="Comment">--     cong₁ (↔-sym eq) refl = refl</a>
+  <a id="3142" class="Comment">--     cong₂ (↔-sym eq) refl = refl</a>
+  <a id="3180" class="Comment">--     proj₁ (Inverse.inverse (↔-sym eq)) = proj₂ (Inverse.inverse eq)</a>
+  <a id="3253" class="Comment">--     proj₂ (Inverse.inverse (↔-sym eq)) = proj₁ (Inverse.inverse eq)</a>
+
+  <a id="3327" class="Comment">--     postulate ≋-sym : Δ₁ ≋ Δ₂ → Δ₂ ≋ Δ₁</a>
+  <a id="3372" class="Comment">--     {-</a>
+  <a id="3384" class="Comment">--     ≋-ty (≋-sym eq)   = ↔-sym (≋-ty eq)</a>
+  <a id="3429" class="Comment">--     ≋-expr (≋-sym eq) = {!!}</a>
+  <a id="3463" class="Comment">--     ≋-val (≋-sym eq)  = {!!}</a>
+  <a id="3497" class="Comment">--     -}</a>
+
+
+  <a id="3511" class="Comment">--     postulate ≋-trans : Δ₁ ≋ Δ₂ → Δ₂ ≋ Δ₃ → Δ₁ ≋ Δ₃</a>
+  <a id="3568" class="Comment">--     {-</a>
+  <a id="3580" class="Comment">--     ≋-ty   (≋-trans eq₁ eq₂) = ≋-ty eq₁ ∘-↔ ≋-ty eq₂</a>
+  <a id="3638" class="Comment">--     ≋-expr (≋-trans eq₁ eq₂) = {!!}</a>
+  <a id="3679" class="Comment">--     ≋-val  (≋-trans eq₁ eq₂) = {!!}</a>
+  <a id="3720" class="Comment">--     -}</a>
+
+  <a id="3733" class="Comment">--     ≋-isEquivalence : IsEquivalence _≋_</a>
+  <a id="3778" class="Comment">--     IsEquivalence.refl  ≋-isEquivalence = ≋-refl</a>
+  <a id="3832" class="Comment">--     IsEquivalence.sym   ≋-isEquivalence = ≋-sym</a>
+  <a id="3885" class="Comment">--     IsEquivalence.trans ≋-isEquivalence = ≋-trans</a>
+      
+  <a id="3947" class="Comment">-- Respect.coe (IsPartialSemigroupˡ.∙-respects-≈ ⊙-semigroupˡ) eq σ = {!!}</a>
+  <a id="4024" class="Comment">-- Respect.coe (IsPartialSemigroupˡ.∙-respects-≈ˡ ⊙-semigroupˡ) = {!!}</a>
+  <a id="4097" class="Comment">-- IsPartialSemigroupˡ.comm   ⊙-semigroupˡ = ⊙-comm</a>
+  <a id="4151" class="Comment">-- IsPartialSemigroupˡ.assocᵣ ⊙-semigroupˡ = ⊙-assoc</a>
+  
+  <a id="4209" class="Comment">-- -}</a>
+
+  <a id="4218" class="Comment">-- instance ⊙-semigroup : IsPartialSemigroup _≋_ ⊙-rel </a>
+  <a id="4276" class="Comment">-- ⊙-semigroup = IsPartialSemigroupˡ.semigroupˡ ⊙-semigroupˡ</a>
+
+  <a id="4340" class="Comment">-- instance ⊙-emptiness : Emptiness ⊙-ε</a>
+  <a id="4382" class="Comment">-- ⊙-emptiness = record {}</a>
+
+  <a id="4412" class="Comment">-- ⊙-unit : Δ ⊙ ⊙-ε ≣ Δ</a>
+  <a id="4438" class="Comment">-- σt ⊙-unit       = ∙-idʳ</a>
+  <a id="4467" class="Comment">-- σe (⊙-unit {Δ}) = ⟨∙⟩-unit {E = expr Δ}</a>
+  <a id="4512" class="Comment">-- σv ⊙-unit       = ⟨⊎⟩-unit</a>
+
+  <a id="4545" class="Comment">-- postulate instance ⊙-monoidˡ : IsPartialMonoidˡ _≋_ ⊙-rel ⊙-ε</a>
+  <a id="4612" class="Comment">-- {-</a>
+  <a id="4620" class="Comment">-- IsPartialMonoidˡ.identityˡ ⊙-monoidˡ = ∙-comm ⊙-unit</a>
+  <a id="4678" class="Comment">-- IsPartialMonoidˡ.identity⁻ˡ ⊙-monoidˡ = {!!}</a>
+  <a id="4728" class="Comment">-- -}</a>
+
+  <a id="4737" class="Comment">-- -- Domain composition is idempotent</a>
+  <a id="4778" class="Comment">-- instance ⊙-contractive : IsContractive U (⊙-rel {F}) </a>
+  <a id="4837" class="Comment">-- σt (IsContractive.∙-copy ⊙-contractive tt)     = λ _ → ∙-copy _</a>
+  <a id="4906" class="Comment">-- σe (IsContractive.∙-copy ⊙-contractive {Δ} tt) = ⟨∙⟩-idem {F} {E = expr Δ}</a>
+  <a id="4986" class="Comment">-- σv (IsContractive.∙-copy ⊙-contractive tt)     = ⟨⊎⟩-idem </a>
+
+
+</pre></body></html>

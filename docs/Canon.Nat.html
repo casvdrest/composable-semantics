@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Canon.Nat</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Canon.Nat.html" class="Module">Canon.Nat</a> <a id="54" class="Keyword">where</a>
+
+<a id="61" class="Keyword">open</a> <a id="66" class="Keyword">import</a> <a id="73" href="Data.Product.html" class="Module">Data.Product</a>
+<a id="86" class="Keyword">open</a> <a id="91" class="Keyword">import</a> <a id="98" href="Data.Nat.html" class="Module">Data.Nat</a>
+<a id="107" class="Keyword">open</a> <a id="112" class="Keyword">import</a> <a id="119" href="Data.Vec.html" class="Module">Data.Vec</a>
+
+<a id="129" class="Keyword">open</a> <a id="134" class="Keyword">import</a> <a id="141" href="Core.html" class="Module">Core</a>
+<a id="146" class="Keyword">open</a> <a id="151" class="Keyword">import</a> <a id="158" href="Signature.html" class="Module">Signature</a>
+<a id="168" class="Keyword">open</a> <a id="173" class="Keyword">import</a> <a id="180" href="Canon.html" class="Module">Canon</a>
+
+<a id="187" class="Keyword">open</a> <a id="192" class="Keyword">import</a> <a id="199" href="Level.html" class="Module">Level</a> <a id="205" class="Symbol">as</a> <a id="208" class="Module">L</a>
+
+
+<a id="212" class="Keyword">module</a> <a id="NatCanon"></a><a id="219" href="Canon.Nat.html#219" class="Module">NatCanon</a> <a id="228" class="Keyword">where</a>
+
+  <a id="237" class="Keyword">data</a> <a id="NatCanon.TNatShape"></a><a id="242" href="Canon.Nat.html#242" class="Datatype">TNatShape</a> <a id="252" class="Symbol">:</a> <a id="254" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="258" class="Keyword">where</a> <a id="NatCanon.TNatShape.nat"></a><a id="264" href="Canon.Nat.html#264" class="InductiveConstructor">nat</a> <a id="268" class="Symbol">:</a> <a id="270" href="Canon.Nat.html#242" class="Datatype">TNatShape</a>
+  <a id="NatCanon.TNatΣ"></a><a id="282" href="Canon.Nat.html#282" class="Function">TNatΣ</a> <a id="288" class="Symbol">=</a> <a id="290" href="Canon.Nat.html#242" class="Datatype">TNatShape</a> <a id="300" href="Signature.html#791" class="InductiveConstructor Operator">▹</a> <a id="302" class="Symbol">λ</a> <a id="304" class="Keyword">where</a> <a id="310" href="Canon.Nat.html#264" class="InductiveConstructor">nat</a> <a id="314" class="Symbol">→</a> <a id="316" class="Number">0</a>
+
+  <a id="NatCanon.nat′"></a><a id="321" href="Canon.Nat.html#321" class="Function">nat′</a> <a id="326" class="Symbol">:</a> <a id="328" class="Symbol">⦃</a> <a id="330" href="Canon.Nat.html#282" class="Function">TNatΣ</a> <a id="336" href="Signature.html#4467" class="Record Operator">≼</a> <a id="338" href="Signature.html#861" class="Generalizable">σ</a> <a id="340" class="Symbol">⦄</a> <a id="342" class="Symbol">→</a> <a id="344" href="Signature.html#1143" class="Datatype">μ</a> <a id="346" href="Signature.html#861" class="Generalizable">σ</a>
+  <a id="350" href="Canon.Nat.html#321" class="Function">nat′</a> <a id="355" class="Symbol">=</a> <a id="357" href="Signature.html#6246" class="Function">inject</a> <a id="364" class="Symbol">(</a><a id="365" href="Canon.Nat.html#264" class="InductiveConstructor">nat</a> <a id="369" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="371" href="Level.html#457" class="InductiveConstructor">L.lift</a> <a id="378" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="380" class="Symbol">)</a>
+
+  <a id="385" class="Keyword">open</a> <a id="390" href="Signature.html#1597" class="Module">Algebra</a>
+
+  <a id="NatCanon.NatVal"></a><a id="401" href="Canon.Nat.html#401" class="Function">NatVal</a> <a id="408" class="Symbol">:</a> <a id="410" href="Signature.html#1597" class="Record">Algebra</a> <a id="418" href="Canon.Nat.html#282" class="Function">TNatΣ</a> <a id="424" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="428" href="Agda.Primitive.html#326" class="Primitive">Set</a>
+  <a id="434" href="Signature.html#1685" class="Field">alg</a> <a id="438" href="Canon.Nat.html#401" class="Function">NatVal</a> <a id="445" class="Symbol">(</a><a id="446" href="Canon.Nat.html#264" class="InductiveConstructor">nat</a> <a id="450" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="452" href="Level.html#457" class="InductiveConstructor">L.lift</a> <a id="459" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="461" class="Symbol">)</a> <a id="463" class="Symbol">=</a> <a id="465" href="Agda.Builtin.Nat.html#192" class="Datatype">ℕ</a>
+
+  <a id="NatCanon.natCanon"></a><a id="470" href="Canon.Nat.html#470" class="Function">natCanon</a> <a id="479" class="Symbol">:</a> <a id="481" href="Canon.html#690" class="Record">Canon</a>
+  <a id="489" href="Canon.html#741" class="Field">Canon.ty</a> <a id="498" href="Canon.Nat.html#470" class="Function">natCanon</a> <a id="507" class="Symbol">=</a> <a id="509" href="Canon.Nat.html#282" class="Function">TNatΣ</a>
+  <a id="517" href="Canon.html#768" class="Field">Canon.val</a> <a id="527" href="Canon.Nat.html#470" class="Function">natCanon</a> <a id="536" class="Symbol">=</a> <a id="538" href="Canon.Nat.html#401" class="Function">NatVal</a>
+
+<a id="546" class="Keyword">open</a> <a id="551" href="Canon.Nat.html#219" class="Module">NatCanon</a> <a id="560" class="Keyword">public</a>
+</pre></body></html>

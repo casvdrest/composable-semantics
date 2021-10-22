@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Languages.STLC+Ref</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Languages.STLC%252BRef.html" class="Module">Languages.STLC+Ref</a> <a id="63" class="Keyword">where</a> 
+
+<a id="71" class="Keyword">open</a> <a id="76" class="Keyword">import</a> <a id="83" href="Core.html" class="Module">Core</a>
+<a id="88" class="Keyword">open</a> <a id="93" class="Keyword">import</a> <a id="100" href="Canon.html" class="Module">Canon</a>
+<a id="106" class="Keyword">open</a> <a id="111" class="Keyword">import</a> <a id="118" href="MonadicFragment.html" class="Module">MonadicFragment</a> <a id="134" href="Core.html#507" class="Function">Sto</a>
+
+<a id="139" class="Keyword">open</a> <a id="144" class="Keyword">import</a> <a id="151" href="Interface.Reader.html" class="Module">Interface.Reader</a>         
+<a id="177" class="Keyword">open</a> <a id="182" class="Keyword">import</a> <a id="189" href="Interface.Lambda.html" class="Module">Interface.Lambda</a>
+<a id="206" class="Keyword">open</a> <a id="211" class="Keyword">import</a> <a id="218" href="Interface.MonotoneState.html" class="Module">Interface.MonotoneState</a>
+<a id="242" class="Keyword">open</a> <a id="247" class="Keyword">import</a> <a id="254" href="Interface.Except.html" class="Module">Interface.Except</a>
+<a id="271" class="Keyword">open</a> <a id="276" class="Keyword">import</a> <a id="283" href="Interface.General.html" class="Module">Interface.General</a>
+
+<a id="302" class="Keyword">open</a> <a id="307" class="Keyword">import</a> <a id="314" href="Fragment.Arith.html" class="Module">Fragment.Arith</a>      <a id="334" class="Keyword">public</a>
+<a id="341" class="Keyword">open</a> <a id="346" class="Keyword">import</a> <a id="353" href="Fragment.Lambda.html" class="Module">Fragment.Lambda</a>     <a id="373" class="Keyword">public</a>
+<a id="380" class="Keyword">open</a> <a id="385" class="Keyword">import</a> <a id="392" href="Fragment.Ref.html" class="Module">Fragment.Ref</a>        <a id="412" class="Keyword">public</a> 
+
+<a id="421" class="Keyword">open</a> <a id="426" href="MonadicFragment.html#1210" class="Module">Itf</a>
+
+<a id="431" class="Keyword">module</a> <a id="438" href="Languages.STLC%252BRef.html#438" class="Module">_</a> <a id="440" class="Symbol">(</a><a id="441" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> <a id="443" class="Symbol">:</a> <a id="445" href="MonadicFragment.html#768" class="Function">Eff</a><a id="448" class="Symbol">)</a>  <a id="451" class="Symbol">⦃</a> <a id="453" href="Languages.STLC%252BRef.html#453" class="Bound">mon</a> <a id="457" class="Symbol">:</a> <a id="459" href="MonadicFragment.html#1251" class="Record">Monadic</a> <a id="467" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> <a id="469" class="Symbol">⦄</a> <a id="471" class="Symbol">⦃</a> <a id="473" href="Languages.STLC%252BRef.html#473" class="Bound">str</a> <a id="477" class="Symbol">:</a> <a id="479" href="MonadicFragment.html#2033" class="Record">IsStrong</a> <a id="488" href="Languages.STLC%252BRef.html#453" class="Bound">mon</a> <a id="492" class="Symbol">⦄</a>
+         <a id="503" class="Symbol">⦃</a> <a id="505" href="Languages.STLC%252BRef.html#505" class="Bound">_</a>   <a id="509" class="Symbol">:</a> <a id="511" href="Interface.Reader.html#726" class="Record">Reader</a>   <a id="520" href="Core.html#507" class="Function">Sto</a>  <a id="525" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> <a id="527" class="Symbol">⦄</a>
+         <a id="538" class="Symbol">⦃</a> <a id="540" href="Languages.STLC%252BRef.html#540" class="Bound">_</a>   <a id="544" class="Symbol">:</a> <a id="546" href="Interface.Lambda.html#658" class="Record">Lambda</a>        <a id="560" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> <a id="562" class="Symbol">⦄</a>
+         <a id="573" class="Symbol">⦃</a> <a id="575" href="Languages.STLC%252BRef.html#575" class="Bound">_</a>   <a id="579" class="Symbol">:</a> <a id="581" href="Interface.MonotoneState.html#618" class="Record">MonotoneState</a> <a id="595" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> <a id="597" class="Symbol">⦄</a> <a id="599" class="Keyword">where</a>
+
+  <a id="608" href="Languages.STLC%252BRef.html#608" class="Function">lang</a> <a id="613" class="Symbol">=</a> <a id="615" href="MonadicFragment.html#5561" class="Function">lift</a> <a id="620" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> <a id="622" href="Fragment.Arith.html#861" class="Function">Arith</a> <a id="628" href="MonadicFragment.html#3477" class="Function">⊙⟨</a> <a id="631" href="Canon.html#8418" class="Function">∙-disjoint</a> <a id="642" href="MonadicFragment.html#3477" class="Function">⟩ᵐ</a> <a id="645" href="Fragment.Lambda.html#1704" class="Function">Fun</a> <a id="649" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> <a id="651" href="MonadicFragment.html#3477" class="Function">⊙⟨</a> <a id="654" href="Canon.html#8418" class="Function">∙-disjoint</a> <a id="665" href="MonadicFragment.html#3477" class="Function">⟩ᵐ</a> <a id="668" href="Fragment.Ref.html#1592" class="Function">Ref</a> <a id="672" href="Languages.STLC%252BRef.html#441" class="Bound">M</a> 
+</pre></body></html>

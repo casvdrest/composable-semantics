@@ -1,0 +1,6 @@
+src/Tree.agda
+src/Tree/Tree.agda
+src/Tree/Handle.agda
+src/Tree/Instances.agda
+src/.donotcount
+src/ArbitraryCategories

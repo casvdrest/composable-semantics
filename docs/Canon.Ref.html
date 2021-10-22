@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Canon.Ref</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Symbol">#-}</a>
+
+<a id="37" class="Keyword">module</a> <a id="44" href="Canon.Ref.html" class="Module">Canon.Ref</a> <a id="54" class="Keyword">where</a>
+
+<a id="61" class="Keyword">open</a> <a id="66" class="Keyword">import</a> <a id="73" href="Data.Product.html" class="Module">Data.Product</a>
+<a id="86" class="Keyword">open</a> <a id="91" class="Keyword">import</a> <a id="98" href="Data.List.html" class="Module">Data.List</a>
+<a id="108" class="Keyword">open</a> <a id="113" class="Keyword">import</a> <a id="120" href="Data.Vec.html" class="Module">Data.Vec</a>
+<a id="129" class="Keyword">open</a> <a id="134" class="Keyword">import</a> <a id="141" href="Data.List.Relation.Unary.All.html" class="Module">Data.List.Relation.Unary.All</a>
+<a id="170" class="Keyword">open</a> <a id="175" class="Keyword">import</a> <a id="182" href="Data.List.Membership.Propositional.html" class="Module">Data.List.Membership.Propositional</a>
+<a id="217" class="Keyword">open</a> <a id="222" class="Keyword">import</a> <a id="229" href="Data.List.Relation.Binary.Sublist.Propositional.html" class="Module">Data.List.Relation.Binary.Sublist.Propositional</a>
+
+<a id="278" class="Keyword">open</a> <a id="283" class="Keyword">import</a> <a id="290" href="Core.html" class="Module">Core</a>
+<a id="295" class="Keyword">open</a> <a id="300" class="Keyword">import</a> <a id="307" href="Signature.html" class="Module">Signature</a>
+<a id="317" class="Keyword">open</a> <a id="322" class="Keyword">import</a> <a id="329" href="Canon.html" class="Module">Canon</a>
+
+<a id="336" class="Keyword">open</a> <a id="341" class="Keyword">import</a> <a id="348" href="Level.html" class="Module">Level</a> <a id="354" class="Symbol">as</a> <a id="357" class="Module">L</a>
+
+<a id="360" class="Keyword">module</a> <a id="RefCanon"></a><a id="367" href="Canon.Ref.html#367" class="Module">RefCanon</a> <a id="376" class="Keyword">where</a>
+
+  <a id="385" class="Keyword">data</a> <a id="RefCanon.TRefShape"></a><a id="390" href="Canon.Ref.html#390" class="Datatype">TRefShape</a> <a id="400" class="Symbol">:</a> <a id="402" href="Agda.Primitive.html#326" class="Primitive">Set</a> <a id="406" class="Keyword">where</a> <a id="RefCanon.TRefShape.ref"></a><a id="412" href="Canon.Ref.html#412" class="InductiveConstructor">ref</a> <a id="416" class="Symbol">:</a> <a id="418" href="Canon.Ref.html#390" class="Datatype">TRefShape</a>
+  <a id="RefCanon.TRefΣ"></a><a id="430" href="Canon.Ref.html#430" class="Function">TRefΣ</a> <a id="436" class="Symbol">=</a> <a id="438" href="Canon.Ref.html#390" class="Datatype">TRefShape</a> <a id="448" href="Signature.html#791" class="InductiveConstructor Operator">▹</a> <a id="450" class="Symbol">λ</a> <a id="452" class="Keyword">where</a> <a id="458" href="Canon.Ref.html#412" class="InductiveConstructor">ref</a> <a id="462" class="Symbol">→</a> <a id="464" class="Number">1</a>
+
+  <a id="RefCanon.ref′"></a><a id="469" href="Canon.Ref.html#469" class="Function">ref′</a> <a id="474" class="Symbol">:</a> <a id="476" class="Symbol">⦃</a> <a id="478" href="Canon.Ref.html#430" class="Function">TRefΣ</a> <a id="484" href="Signature.html#4467" class="Record Operator">≼</a> <a id="486" href="Signature.html#861" class="Generalizable">σ</a> <a id="488" class="Symbol">⦄</a> <a id="490" class="Symbol">→</a> <a id="492" class="Symbol">(</a><a id="493" href="Canon.Ref.html#493" class="Bound">t</a> <a id="495" class="Symbol">:</a> <a id="497" href="Signature.html#1143" class="Datatype">μ</a> <a id="499" href="Signature.html#861" class="Generalizable">σ</a><a id="500" class="Symbol">)</a> <a id="502" class="Symbol">→</a> <a id="504" href="Signature.html#1143" class="Datatype">μ</a> <a id="506" href="Signature.html#861" class="Generalizable">σ</a>
+  <a id="510" href="Canon.Ref.html#469" class="Function">ref′</a> <a id="515" href="Canon.Ref.html#515" class="Bound">t</a> <a id="517" class="Symbol">=</a> <a id="519" href="Signature.html#6246" class="Function">inject</a> <a id="526" class="Symbol">(</a><a id="527" href="Canon.Ref.html#412" class="InductiveConstructor">ref</a> <a id="531" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="533" href="Level.html#457" class="InductiveConstructor">L.lift</a> <a id="540" class="Symbol">(</a><a id="541" href="Canon.Ref.html#515" class="Bound">t</a> <a id="543" href="Data.Vec.Base.html#1014" class="InductiveConstructor Operator">∷</a> <a id="545" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="547" class="Symbol">))</a>
+
+  <a id="553" class="Keyword">open</a> <a id="558" href="Signature.html#1597" class="Module">Algebra</a>
+
+  <a id="RefCanon.ReferenceVal"></a><a id="569" href="Canon.Ref.html#569" class="Function">ReferenceVal</a> <a id="582" class="Symbol">:</a> <a id="584" href="Canon.html#826" class="Record">Values</a> <a id="591" href="Core.html#507" class="Function">Sto</a> <a id="595" href="Canon.Ref.html#430" class="Function">TRefΣ</a> 
+  <a id="604" href="Signature.html#1685" class="Field">alg</a> <a id="608" class="Symbol">(</a><a id="609" href="Canon.html#923" class="Field">out</a> <a id="613" href="Canon.Ref.html#569" class="Function">ReferenceVal</a><a id="625" class="Symbol">)</a> <a id="627" class="Symbol">(</a><a id="628" href="Canon.Ref.html#412" class="InductiveConstructor">ref</a> <a id="632" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="634" href="Level.html#457" class="InductiveConstructor">lift</a> <a id="639" class="Symbol">((</a><a id="641" href="Canon.Ref.html#641" class="Bound">t</a> <a id="643" href="Agda.Builtin.Sigma.html#236" class="InductiveConstructor Operator">,</a> <a id="645" class="Symbol">_)</a> <a id="648" href="Data.Vec.Base.html#1014" class="InductiveConstructor Operator">∷</a> <a id="650" href="Data.Vec.Base.html#995" class="InductiveConstructor">[]</a><a id="652" class="Symbol">))</a> <a id="655" href="Canon.Ref.html#655" class="Bound">Σ</a> <a id="657" class="Symbol">=</a> <a id="659" href="Core.html#446" class="InductiveConstructor">value</a> <a id="665" href="Canon.Ref.html#641" class="Bound">t</a> <a id="667" href="Data.List.Membership.Setoid.html#882" class="Function Operator">∈</a> <a id="669" href="Canon.Ref.html#655" class="Bound">Σ</a>
+  
+  <a id="RefCanon.refCanon"></a><a id="676" href="Canon.Ref.html#676" class="Function">refCanon</a> <a id="685" class="Symbol">:</a> <a id="687" href="Canon.html#1228" class="Record">ICanon</a> <a id="694" href="Core.html#507" class="Function">Sto</a>
+  <a id="700" href="Canon.html#1298" class="Field">ICanon.ity</a>  <a id="712" href="Canon.Ref.html#676" class="Function">refCanon</a> <a id="721" class="Symbol">=</a> <a id="723" href="Canon.Ref.html#430" class="Function">TRefΣ</a> 
+  <a id="732" href="Canon.html#1328" class="Field">ICanon.ival</a> <a id="744" href="Canon.Ref.html#676" class="Function">refCanon</a> <a id="753" class="Symbol">=</a> <a id="755" href="Canon.Ref.html#569" class="Function">ReferenceVal</a> 
+
+<a id="770" class="Keyword">open</a> <a id="775" href="Canon.Ref.html#367" class="Module">RefCanon</a> <a id="784" class="Keyword">public</a>
+</pre></body></html>
