@@ -1,4 +1,4 @@
-{-# OPTIONS --safe --without-K #-}
+{-# OPTIONS --without-K #-}
 
 module Everything where
 
@@ -113,7 +113,6 @@ open import Test.Language1
 -- Generalization to arbitrary categories
 open import ArbitraryCategories.Base
 open import ArbitraryCategories.Lambda
--- open import ArbitraryCategories.Sets ---> postulates fun-ext to prove some laws
-                                        --   about the underlying category, so no
-                                        --   --safe :( 
-open import ArbitraryCategories.StoreSets
+open import ArbitraryCategories.Sets ---> postulates fun-ext to prove some laws
+                                     --   about the underlying category, so no
+                                     --   --safe :( 
