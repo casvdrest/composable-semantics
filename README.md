@@ -1,5 +1,7 @@
 # Intrinsically-Typed Definitional Interpreters à la Carte
 
+Browse the code interacively [**here**](https://casvdrest.github.io/composable-semantics/Everything.html)
+
 Familiar with Agda? `Everything.agda` imports all definitions.  
 
 ## Build instructions
