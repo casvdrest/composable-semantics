@@ -1,8 +1,3 @@
-name: composable.agda  -- Comment
-depend: 
-include:
-  src
-  ./lib/agda-stdlib/src/
-  ./lib/ternary.agda/src/
-  ./lib/agda-categories/src/
-  ./writeup/OOPSLA22/tex/
+name: composable.agda
+depend: standard-library agda-categories 
+include: src
