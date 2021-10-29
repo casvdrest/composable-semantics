@@ -1,5 +1,7 @@
 # Intrinsically-Typed Definitional Interpreters à la Carte
 
+Joint work with Casper Bach Poulsen, Arjen Rouvoet, Eelco Visser, Peter Mosses. 
+
 Browse the code interacively [**here**](https://casvdrest.github.io/composable-semantics/Everything.html)
 
 Familiar with Agda? `Everything.agda` imports all definitions.  
