@@ -2,7 +2,7 @@
 
 Joint work with Casper Bach Poulsen, Arjen Rouvoet, Eelco Visser, Peter Mosses. 
 
-The code in this repository is associated with the paper [Intrinsically-Typed Definitional Interpreters à la Carte](doi.org/10.1145/3563355), published at OOPSLA 2022. This paper, its accompanying artifact, and this repository are distributed under a CC-BY 4.0 license. 
+The code in this repository is associated with the paper [Intrinsically-Typed Definitional Interpreters à la Carte](https://doi.org/10.1145/3563355), published at OOPSLA 2022. This paper, its accompanying artifact, and this repository are distributed under a CC-BY 4.0 license. 
 
 # Expore
 
